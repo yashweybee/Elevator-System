@@ -20,8 +20,10 @@ body {
 }
 
 .lift {
+    text-align: center;
     width: 100px;
     height: 80px;
+    color: white;
     background-color: #183D3D;
     margin: auto;
     position: absolute;
@@ -32,9 +34,9 @@ body {
 }
 
 .blocked {
+    top: 75% !important;
     border: 1px solid red;
     background-color: #415e5e;
-    top: 75% !important;
 }
 
 .floor-5 {
