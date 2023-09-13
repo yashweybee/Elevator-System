@@ -11,7 +11,7 @@ body {
     position: relative;
 }
 
-.main-container .doors,
+.main-container .lift-container,
 .maintenance {
     background-color: #5C8374;
     position: relative;
@@ -29,23 +29,26 @@ body {
     left: 50%;
     transform: translate(-50%, 0%);
     transition: .5s;
-    /* animation-name: lift-anime;
-    animation-duration: 1s; */
 }
 
-/* 
-@keyframes lift-anime {
-    from {
-        top: 75%;
-    }
+.floor-5 {
+    top: 1%;
+}
 
-    to {
-        top: 10%;
-    }
-} */
+.floor-4 {
+    top: 20%;
+}
 
-.first-floor {
-    top: 50%;
+.floor-3 {
+    top: 39%;
+}
+
+.floor-2 {
+    top: 58%;
+}
+
+.floor-1 {
+    top: 75%;
 }
 
 .maintenance {
@@ -60,17 +63,29 @@ p {
 
 .floor {
     display: flex;
+    align-items: center;
     gap: 60px;
-    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     height: 94px;
-    width: 250px;
+    width: 230px;
+    color: white;
 }
 
 
 .aeroBtn {
+    font-size: 25px;
+    border-radius: 15%;
     text-align: center;
     width: 40px;
     height: 40px;
     color: white;
     background-color: #183D3D;
+    cursor: pointer;
+    transition: .5s;
 }
+
+/* .aeroBtn:hover {
+    border: 1px solid white;
+    color: black;
+    background-color: #5C8374;
+} */
