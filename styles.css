@@ -20,7 +20,7 @@ body {
 }
 
 .lift {
-    width: 150px;
+    width: 100px;
     height: 80px;
     background-color: #183D3D;
     margin: auto;
@@ -29,6 +29,12 @@ body {
     left: 50%;
     transform: translate(-50%, 0%);
     transition: .5s;
+}
+
+.blocked {
+    border: 1px solid red;
+    background-color: #415e5e;
+    top: 75% !important;
 }
 
 .floor-5 {
