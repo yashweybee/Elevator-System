@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+    position: relative;
+}
+
+.main-container .doors,
+.maintenance {
+    background-color: #5C8374;
+    position: relative;
+    outline: 1px solid white;
+    width: 250px;
+}
+
+.lift {
+    width: 150px;
+    height: 80px;
+    background-color: #183D3D;
+    margin: auto;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: .5s;
+    /* animation-name: lift-anime;
+    animation-duration: 1s; */
+}
+
+/* 
+@keyframes lift-anime {
+    from {
+        top: 75%;
+    }
+
+    to {
+        top: 10%;
+    }
+} */
+
+.first-floor {
+    top: 50%;
+}
+
+.maintenance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    font-size: 25px;
+}
+
+.floor {
+    display: flex;
+    gap: 60px;
+    border-top: 1px solid white;
+    height: 94px;
+    width: 250px;
+}
+
+
+.aeroBtn {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: #183D3D;
+}
