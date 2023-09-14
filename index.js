@@ -14,15 +14,23 @@ const mainContainer = document.getElementById("main-container");
 
 const floorClasses = ["floor-1", "floor-2", "floor-3", "floor-4", "floor-5"]
 const numberOfLift = 3;
-let currentFloor = 1;
+// let currentFloor = 1;
+let userEnterdFloor;
+let nearestLift;
 let randomNum = 0;
+let liftFloorData = []; //saves current floor data
+
+for (let i = 0; i < numberOfLift; i++) {
+    liftFloorData.push(1);
+}
+console.log(liftFloorData);
 
 for (let i = 0; i < numberOfLift; i++) {
     const liftHtml =
         `
     <div id="lift-container-${i}" class="lift-container">
    <div class="doors">
-      <div id="lift-${i}" class="lift"><span>${currentFloor}</span></div>
+      <div id="lift-${i}" class="lift"><span>${liftFloorData[i]}</span></div>
       <div class="form-check form-switch position-absolute bottom-0 start-50 translate-middle-x">
          <input class="form-check-input" type="checkbox" role="switch"
             id="switch-${i}">
@@ -33,21 +41,18 @@ for (let i = 0; i < numberOfLift; i++) {
 }
 const lift = document.querySelectorAll(".lift-container .doors .lift");
 const switchBtn = document.querySelectorAll(".form-check-input");
-console.log(lift);
+// console.log(lift);
 
 
 // adding event listners
-
 switchBtn.forEach(btn => {
     btn.addEventListener('click', switchBtnhandle)
 })
 
 liftBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        currentFloor = Number(e.target.id.slice(-1))
-        // console.log(currentFloor);
-        handleLiftBtn(currentFloor);
-
+        userEnterdFloor = Number(e.target.id.slice(-1))
+        handleLiftBtn(userEnterdFloor);
     })
 })
 
@@ -81,17 +86,36 @@ function switchBtnhandle(e) {
     }
 }
 
-function handleLiftBtn(floorNum) {
-    randomNum = Math.trunc(Math.random() * numberOfLift)
-    console.log(randomNum);
-    removeFloorClesses();
-    lift[randomNum].classList.add(`floor-${floorNum}`);
+function findNearestLift(floorNum) {
+    // function returns nearst lift index to the floor
+    if (liftFloorData.every(ele => ele === 1)) {
+        return Math.trunc(Math.random() * numberOfLift);
+    }
 
-    lift[randomNum].querySelector("span").textContent = currentFloor
+    let min = 5, minIndex = 0;
+    for (let i = 0; i < liftFloorData.length; i++) {
+        if ((Math.abs(floorNum - liftFloorData[i])) < min) {
+            min = Math.abs(floorNum - liftFloorData[i]);
+            minIndex = i;
+        }
+    }
+    return minIndex;
+}
+
+function handleLiftBtn(floorNum) {
+    // randomNum = Math.trunc(Math.random() * numberOfLift);
+
+    nearestLift = findNearestLift(floorNum);
+    liftFloorData[nearestLift] = floorNum;
+    console.log(liftFloorData);
+
+    removeFloorClesses();
+    lift[nearestLift].classList.add(`floor-${floorNum}`);
+    lift[nearestLift].querySelector("span").textContent = liftFloorData[nearestLift]
 }
 
 function removeFloorClesses() {
     floorClasses.forEach(floor => {
-        lift[randomNum].classList.remove(floor)
+        lift[nearestLift].classList.remove(floor);
     })
 }
