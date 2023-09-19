@@ -53,7 +53,6 @@ switchBtn.forEach(btn => {
 
 liftBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        // console.log(e.target.classList[0]);
         userEnterdFloor = Number(e.target.classList[0]);
         if (checkAllBlock()) {
             console.log("all lifts are blocked");
@@ -65,18 +64,16 @@ liftBtn.forEach(btn => {
 
 
 function switchBtnhandle(e) {
-    // console.log(e.target.classList[0]);
     const indexOfLift = e.target.classList[0];
     const checkedOrNot = e.target.checked;
-
 
     if (checkedOrNot) {
         lift.forEach((x, index) => {
             if (x.classList[0] === `${indexOfLift}`) {
-                console.log(index);
-                liftFloorData[index] = Number.NEGATIVE_INFINITY
 
-                moveLift(x, indexOfLift, 1);
+
+                liftFloorData[index] = Number.NEGATIVE_INFINITY
+                moveLift(x, 1);
                 x.classList.add("blocked");
             }
         })
@@ -84,7 +81,7 @@ function switchBtnhandle(e) {
         lift.forEach((x, index) => {
             if (x.classList[0] === `${indexOfLift}`) {
                 liftFloorData[index] = 1
-                moveLift(x, indexOfLift, 1);
+                moveLift(x, 1);
                 x.classList.remove("blocked");
             }
         })
@@ -118,16 +115,12 @@ function findNearestLift(floorNum) {
 }
 
 function handleLiftBtn(floorNum) {
-
     nearestLift = findNearestLift(floorNum);
-
     liftFloorData[nearestLift] = floorNum;
-    console.log(liftFloorData);
-
-    moveLift(lift[nearestLift], nearestLift, floorNum);
+    moveLift(lift[nearestLift], floorNum);
 }
 
-function moveLift(lift, index, floor) {
+function moveLift(lift, floor) {
     lift.style.bottom = `${(100 * (floor - 1))}px`
     lift.querySelector("span").textContent = floor;
 }
